@@ -1,34 +1,41 @@
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR.ARFoundation;
-using UnityEngine.XR.ARSubsystems;
 
 public class coin : MonoBehaviour
 {
-    private ARRaycastManager rayManager;
-    
-    void Start()
+    private MonoBehaviour owner;
+    private bool wasCollected;
+
+    public void Initialize(MonoBehaviour spawner)
     {
-        rayManager = FindAnyObjectByType<ARRaycastManager>();
+        owner = spawner;
     }
 
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        List<ARRaycastHit> hits = new List<ARRaycastHit>();
-        rayManager.Raycast(new Vector2(Screen.width /2, Screen.height /2), hits, TrackableType.Planes);
-    }
-    
-    void OnCollisionEnter(Collision collision)
-    {
-        
+        TryCollect(other.gameObject);
     }
 
-    void RandomSpawn()
+    private void OnCollisionEnter(Collision collision)
     {
-        float x = Random.Range(-5.0f, 5.0f);
-        float y = Random.Range(-5.0f, 5.0f);
-        float z = Random.Range(-5.0f, 5.0f);
+        TryCollect(collision.gameObject);
+    }
 
-        transform.position = new Vector3(x, y, z);
+    private void TryCollect(GameObject other)
+    {
+        if (wasCollected)
+        {
+            return;
+        }
+
+        // Accept collider on the car itself or on child objects.
+        Coche car = other.GetComponentInParent<Coche>();
+        if (car == null)
+        {
+            return;
+        }
+
+        wasCollected = true;
+        owner?.Invoke("NotifyCoinCollected", 0f);
+        Destroy(gameObject);
     }
 }

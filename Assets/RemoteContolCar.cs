@@ -7,7 +7,8 @@ public class Coche : MonoBehaviour
     public float acceleration;
     public float maxSpeed;
     private float curSpeed;
-    public float turnSpeed;
+    private float currentTurnRate;
+    public float turnSpeed = 180f;
     public bool doAccelerate;
     private Rigidbody rig;
 
@@ -35,12 +36,24 @@ public class Coche : MonoBehaviour
 
 
         rig.linearVelocity = transform.forward * curSpeed;
+
+        // Aplica rotación usando angularVelocity del Rigidbody
+        if (currentTurnRate != 0f)
+        {
+            rig.angularVelocity = Vector3.up * (currentTurnRate * turnSpeed * Mathf.Deg2Rad);
+        }
+        else
+        {
+            rig.angularVelocity = Vector3.zero;
+        }
+
+        currentTurnRate = 0f; // Reset cada frame
     }
 
 
     public void Turn (float rate)
     {
-        transform.Rotate(Vector3.up, rate * turnSpeed * Time.deltaTime);
+        currentTurnRate = rate;
     }
 }
 
