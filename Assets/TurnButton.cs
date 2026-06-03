@@ -3,25 +3,25 @@ using UnityEngine;
 
 public class TurnButton : MonoBehaviour
 {
-    public float turnDir = 1f;
-    private bool heldDown;
+    public float turnDir;
+    private bool _heldDown;
 
 
     void Update()
     {
-        if(heldDown && Coche.instance != null)
+        if(_heldDown)
         {
-            Coche.instance.Turn(turnDir);
+            if (Coche.Instance != null) Coche.Instance.Turn(turnDir);
         }
     }
-    
     public void OnDown()
     {
-        heldDown = true;
+        _heldDown = true;
+        if (Coche.Instance != null) Coche.Instance.Turn(turnDir);
     }
-    
     public void OnUp()
     {
-        heldDown = false;
+        _heldDown = false;
+        if (Coche.Instance != null) Coche.Instance.Turn(0f);
     }
 }

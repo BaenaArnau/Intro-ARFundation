@@ -38,7 +38,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 59847aa0de776b461be62152a29382f8, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 59847aa0de776b461be62152a29382f8, type: 3}
       propertyPath: m_LocalRotation.y
@@ -46,7 +46,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 59847aa0de776b461be62152a29382f8, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 59847aa0de776b461be62152a29382f8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -78,6 +78,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 59847aa0de776b461be62152a29382f8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3968299088376763551}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 59847aa0de776b461be62152a29382f8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3240558797566197598}
   m_SourcePrefab: {fileID: 100100000, guid: 59847aa0de776b461be62152a29382f8, type: 3}
 --- !u!1 &6813328989628463037 stripped
 GameObject:
@@ -127,3 +130,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!65 &3240558797566197598
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6813328989628463037}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 8.397805, y: 63.26721, z: 15.356417}
+  m_Center: {x: -0.03160052, y: -0.18135756, z: 0.73210967}

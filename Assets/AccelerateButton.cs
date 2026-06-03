@@ -5,12 +5,11 @@ public class AccelerateButton : MonoBehaviour
 {
     public void OnDown()
     {
-        Coche.instance.doAccelerate = true;
+        Coche.Instance.doAccelerate = true;
     }
-
-
+    
     public void OnUp()
     {
-        Coche.instance.doAccelerate = false;
+        Coche.Instance.doAccelerate = false;
     }
 }

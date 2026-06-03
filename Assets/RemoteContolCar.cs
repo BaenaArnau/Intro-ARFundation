@@ -6,20 +6,20 @@ public class Coche : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public float acceleration;
     public float maxSpeed;
-    private float curSpeed;
-    private float currentTurnRate;
+    private float _curSpeed;
+    private float _currentTurnRate;
     public float turnSpeed = 180f;
     public bool doAccelerate;
-    private Rigidbody rig;
+    private Rigidbody _rig;
 
 
-    public static Coche instance;
+    public static Coche Instance;
 
 
     void Awake()
     {
-        instance = this;
-        rig = GetComponent<Rigidbody>();
+        Instance = this;
+        _rig = GetComponent<Rigidbody>();
     }
 
 
@@ -27,33 +27,28 @@ public class Coche : MonoBehaviour
     {
         if(doAccelerate)
         {
-            curSpeed = Mathf.Clamp(curSpeed + (Time.deltaTime * acceleration), 0.0f, maxSpeed);
+            _curSpeed = Mathf.Clamp(_curSpeed + (Time.deltaTime * acceleration), 0.0f, maxSpeed);
         }
         else
         {
-            curSpeed = Mathf.Clamp(curSpeed - (Time.deltaTime * acceleration), 0.0f, maxSpeed);
+            _curSpeed = Mathf.Clamp(_curSpeed - (Time.deltaTime * acceleration), 0.0f, maxSpeed);
         }
 
 
-        rig.linearVelocity = transform.forward * curSpeed;
-
-        // Aplica rotación usando angularVelocity del Rigidbody
-        if (currentTurnRate != 0f)
+        if (_currentTurnRate != 0f)
         {
-            rig.angularVelocity = Vector3.up * (currentTurnRate * turnSpeed * Mathf.Deg2Rad);
-        }
-        else
-        {
-            rig.angularVelocity = Vector3.zero;
+            transform.Rotate(0f, _currentTurnRate * turnSpeed * Time.deltaTime, 0f);
         }
 
-        currentTurnRate = 0f; // Reset cada frame
+        _rig.linearVelocity = transform.forward * _curSpeed;
+
+        _currentTurnRate = 0f; // Reset cada frame
     }
 
 
     public void Turn (float rate)
     {
-        currentTurnRate = rate;
+        _currentTurnRate = rate;
     }
 }
 

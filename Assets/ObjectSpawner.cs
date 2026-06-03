@@ -12,10 +12,18 @@ public class ObjectSpawner : MonoBehaviour
 
     void Update()
     {
+        if (placementIndicator == null || objectToSpawn == null)
+        {
+            return;
+        }
+
         if(Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
         {
-            GameObject obj = Instantiate(objectToSpawn, placementIndicator.transform.position, placementIndicator.transform.rotation);
-            
+            GameObject obj = Instantiate(objectToSpawn);
+            obj.transform.SetPositionAndRotation(
+                placementIndicator.transform.position,
+                placementIndicator.transform.rotation
+            );
         }
     }
 }
